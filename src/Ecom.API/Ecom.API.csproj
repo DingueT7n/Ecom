@@ -21,11 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Ecom.Core\Ecom.Core.csproj" />
+    <ProjectReference Include="..\Ecom.Infrastructure\Ecom.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ecom.Infrastructure\Ecom.Infrastructure.csproj" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>

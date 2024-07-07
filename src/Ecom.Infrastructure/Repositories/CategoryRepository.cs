@@ -11,10 +11,17 @@ namespace Ecom.Infrastructure.Repositories
 {
     public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {
+        public ApplicationDbContext _context { get; set; }
         public CategoryRepository(ApplicationDbContext context) : base(context)
         {
+            _context = context;
         }
 
-        
+        //public async Task<Category> GetAsync(int id)
+        //{
+        //   var response =await  _context.Categories.FindAsync(id);
+        //    return response;
+
+        //}
     }
 }

@@ -16,12 +16,12 @@ namespace Ecom.Infrastructure.Data.Config
             builder.Property(x => x.Id).IsRequired();
             builder.Property(x => x.Name).HasMaxLength(30);
             builder.Property(x => x.Price).HasColumnType("decimal(18, 2)");
-            builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
+            builder.HasOne(x => x.Category).WithMany(c => c.Products).HasForeignKey(x => x.CategoryId);
             builder.HasData(
 
-                new Product { Id = 1, Name = " Product One", Description = "P1", Price = 11.5m, CategoryId = 1 },
-                new Product { Id = 2, Name = " Product Two", Description = "P2", Price = 10.5m, CategoryId = 2 },
-                new Product { Id = 3, Name = " Product Three", Description = "P3", Price = 0m, CategoryId = 3 }
+                new Product { Id = 1, Name = " Product One", Description = "P1", Price = 11.5m, CategoryId = 1,ProductPicture="https://" },
+                new Product { Id = 2, Name = " Product Two", Description = "P2", Price = 10.5m, CategoryId = 2, ProductPicture = "https://" },
+                new Product { Id = 3, Name = " Product Three", Description = "P3", Price = 0m, CategoryId = 3, ProductPicture = "https://" }
 
                 );
 

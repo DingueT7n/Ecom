@@ -9,6 +9,6 @@ namespace Ecom.Core.Interfaces
 {
     public interface ICategoryRepository : IGenericRepository<Category> 
     {
-
+        //Task<Category> GetAsync(int id);
     }
 }

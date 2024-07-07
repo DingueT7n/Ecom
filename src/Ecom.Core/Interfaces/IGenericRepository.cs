@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ecom.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace Ecom.Core.Interfaces
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<T> where T : BaseEntity<int>
     {
         Task<IReadOnlyList<T>> GetAllAsync();
         IEnumerable<T> GetAll();
-        Task<T> GetAsync(T id);
+        Task<T> GetAsync(int id);
 
-        Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T,bool>>[] includes);
-        IEnumerable<T> GetAll(params Expression<Func<T, bool>>[] includes);
-        Task<T> GetByIdAsync(T id,params Expression<Func<T, bool>>[] includes);
+        Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T,object>>[] includes);
+        IEnumerable<T> GetAll(params Expression<Func<T, object>>[] includes);
+        Task<T> GetByIdAsync(int id,params Expression<Func<T, object>>[] includes);
 
         Task AddAsync(T entity);
-        Task UpdateAsync(T id,T entity);
-        Task DeleteAsync(T id);
+        Task UpdateAsync(int id,T entity);
+        Task DeleteAsync(int id);
     }
 }
