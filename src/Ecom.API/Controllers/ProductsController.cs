@@ -1,4 +1,5 @@
 ﻿
+using Ecom.API.Errors;
 using Ecom.Core.Dtos;
 using Ecom.Core.Entities;
 using Ecom.Core.Interfaces;
@@ -48,10 +49,14 @@ namespace Ecom.API.Controllers
 
 
         [HttpGet("Get-Product-By-Id/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseCommuneResponse),StatusCodes.Status404NotFound)]
+
         public async Task<IActionResult> GetById(int id)
         {
             var Product = await UnitOfWork.ProductRepository.GetByIdAsync(id,x=>x.Category);
-            
+            if (Product is null)
+                return NotFound(new BaseCommuneResponse(404));
             if (Product is not null)
             {
                 ProductDtos result = new ProductDtos

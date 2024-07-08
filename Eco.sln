@@ -5,11 +5,11 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{52F7FF1A-F9FF-4E0A-A622-FF85310EEDBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecom.Core", "src\Ecom.Core\Ecom.Core.csproj", "{60D52B53-5EEB-4FC4-A4EE-36D528727BDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecom.Core", "src\Ecom.Core\Ecom.Core.csproj", "{60D52B53-5EEB-4FC4-A4EE-36D528727BDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecom.Infrastructure", "src\Ecom.Infrastructure\Ecom.Infrastructure.csproj", "{5DAD4E3D-CF14-47B2-A8A5-7350B9D5EE48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecom.Infrastructure", "src\Ecom.Infrastructure\Ecom.Infrastructure.csproj", "{5DAD4E3D-CF14-47B2-A8A5-7350B9D5EE48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecom.API", "src\Ecom.API\Ecom.API.csproj", "{DD9126C9-B7E4-460C-9064-C2E293F8B291}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecom.API", "src\Ecom.API\Ecom.API.csproj", "{DD9126C9-B7E4-460C-9064-C2E293F8B291}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
