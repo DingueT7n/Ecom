@@ -30,6 +30,15 @@ namespace Ecom.API.Extensions
                       };
 
                   });
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .WithOrigins("https://localhost:4200");
+                });
+            });
             return services; 
         }
     }

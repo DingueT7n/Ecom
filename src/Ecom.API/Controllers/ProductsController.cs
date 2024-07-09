@@ -1,8 +1,10 @@
 ﻿
 using Ecom.API.Errors;
+using Ecom.API.Helper;
 using Ecom.Core.Dtos;
 using Ecom.Core.Entities;
 using Ecom.Core.Interfaces;
+using Ecom.Core.Sharing;
 using Ecom.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -24,24 +26,16 @@ namespace Ecom.API.Controllers
         }
 
         [HttpGet("Get-All-Products")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] ProductParams ProdParam)
         {
-            var AllProducts = await UnitOfWork.ProductRepository.GetAllAsync(x => x.Category);
+            //var AllProducts = await UnitOfWork.ProductRepository.GetAllAsync(x => x.Category);
+            var AllProducts = await UnitOfWork.ProductRepository.GetAllAsync(ProdParam);
+            var Count = AllProducts.Count();
             if (AllProducts is not null)
             {
-                var result = AllProducts.Select(x => new ProductDtos
-                {
-                    Id = x.Id,
-                    Description = x.Description,
-                    Name = x.Name,
-                    Price = x.Price,
-                    CategoryName = x.Category.Name,
-                    
-                    ProductPicture =string.IsNullOrEmpty(x.ProductPicture) ?null : config["ApiURL"] +x.ProductPicture,
-                    
-                    
-                }).ToList();
-                return Ok(result);
+                //return Ok(AllProducts);
+                return Ok(new Pagination<ProductDtos>(ProdParam.Pagenumber,ProdParam.PageSiz,Count,AllProducts));
+
             }
 
             return BadRequest("Not Found");

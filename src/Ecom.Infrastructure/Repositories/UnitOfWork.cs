@@ -1,5 +1,6 @@
 ﻿using Ecom.Core.Interfaces;
 using Ecom.Infrastructure.Data;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,16 @@ namespace Ecom.Infrastructure.Repositories
         private readonly ApplicationDbContext _context ;
        
         private readonly IFileProvider fileProvider;
+        private readonly IConfiguration config;
 
-        public UnitOfWork(ApplicationDbContext context , IFileProvider fileProvider)
+        public UnitOfWork(ApplicationDbContext context , IFileProvider fileProvider, IConfiguration config)
         {
             _context = context;
            
             this.fileProvider = fileProvider;
+            this.config = config;
             CategoryRepository =new CategoryRepository(context);
-            ProductRepository =new ProductRepository(context,fileProvider);
+            ProductRepository =new ProductRepository(context,fileProvider,config);
 
         }
 
