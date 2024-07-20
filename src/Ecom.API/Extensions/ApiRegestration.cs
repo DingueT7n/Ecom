@@ -34,11 +34,9 @@ namespace Ecom.API.Extensions
             {
                 opt.AddPolicy("CorsPolicy", policy =>
                 {
-                    policy.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .WithOrigins("https://localhost:4200");
+                    policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
                 });
-            });
+            }).AddAuthorization();
             return services; 
         }
     }

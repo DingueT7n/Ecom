@@ -1,6 +1,6 @@
 ﻿using Ecom.API.Errors;
 using Ecom.Infrastructure.Data;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecom.API.Controllers

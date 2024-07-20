@@ -14,6 +14,7 @@ namespace Ecom.Core.Interfaces
         Task<bool> AddAsync(AddProductDtos ProdDto);
         Task<bool> UpdateAsync(int id ,UpdateProductDtos ProdDto);
         Task<bool> DeleteAsyncWithPicture(int id);
+        Task<int> CountProductsAsync(ProductParams ProdParam);
 
 
     }

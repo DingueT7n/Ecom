@@ -65,6 +65,42 @@ namespace Ecom.Infrastructure.Repositories
             return false; 
         }
 
+        public async Task<int> CountProductsAsync(ProductParams ProdParam)
+        {
+            var query = _context.Products
+                      
+                        .AsQueryable();
+
+            // Apply filters based on ProdParam
+            if (ProdParam.CategoryId.HasValue)
+            {
+                query = query.Where(x => x.CategoryId == ProdParam.CategoryId.Value);
+            }
+            if (!string.IsNullOrEmpty(ProdParam.Search))
+            {
+                query = query.Where(x => x.Name.ToLower().Contains(ProdParam.Search.ToLower()));
+            }
+
+            if (!string.IsNullOrEmpty(ProdParam.Sort))
+            {
+                query = ProdParam.Sort switch
+                {
+                    "PriceAsc" => query.OrderBy(x => x.Price),
+                    "PriceDesc" => query.OrderByDescending(x => x.Price),
+                    _ => query.OrderBy(x => x.Name),
+                };
+            }
+            else
+            {
+                query = query.OrderBy(x => x.Name);
+            }
+
+           
+
+            return await query.CountAsync();
+           
+        }
+
         public async Task<bool> DeleteAsyncWithPicture(int id)
         {
             var productToDelete = await _context.Products.FindAsync( id);
@@ -119,6 +155,19 @@ namespace Ecom.Infrastructure.Repositories
 
             var products = await query.ToListAsync();
 
+            var _result = products.Select(x => new ProductDtos
+            {
+                Id = x.Id,
+                Description = x.Description,
+                Name = x.Name,
+                Price = x.Price,
+                CategoryName = x.Category.Name,
+
+                ProductPicture = string.IsNullOrEmpty(x.ProductPicture) ? null : config["ApiURL"] + x.ProductPicture,
+
+
+            }).ToList();
+            return _result;
 
             ////performance issue
             //var products = ProdParam.CategoryId.HasValue ? await _context.Products
@@ -153,19 +202,7 @@ namespace Ecom.Infrastructure.Repositories
 
             ////products = products.Skip((ProdParam.PageSiz) * (ProdParam.Pagenumber - 1)).Take(ProdParam.PageSiz).ToList();
 
-            var _result = products.Select(x => new ProductDtos
-            {
-                Id = x.Id,
-                Description = x.Description,
-                Name = x.Name,
-                Price = x.Price,
-                CategoryName = x.Category.Name,
-
-                ProductPicture = string.IsNullOrEmpty(x.ProductPicture) ? null : config["ApiURL"] + x.ProductPicture,
-
-
-            }).ToList();
-            return _result;
+          
         }
 
         public async Task<bool> UpdateAsync(int id,UpdateProductDtos ProdDto)

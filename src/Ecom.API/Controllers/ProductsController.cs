@@ -28,9 +28,10 @@ namespace Ecom.API.Controllers
         [HttpGet("Get-All-Products")]
         public async Task<IActionResult> Get([FromQuery] ProductParams ProdParam)
         {
+            
             //var AllProducts = await UnitOfWork.ProductRepository.GetAllAsync(x => x.Category);
             var AllProducts = await UnitOfWork.ProductRepository.GetAllAsync(ProdParam);
-            var Count = AllProducts.Count();
+            var Count = await UnitOfWork.ProductRepository.CountProductsAsync(ProdParam);
             if (AllProducts is not null)
             {
                 //return Ok(AllProducts);

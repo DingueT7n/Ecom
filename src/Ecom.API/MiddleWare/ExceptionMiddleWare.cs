@@ -17,8 +17,8 @@ namespace Ecom.API.MiddleWare
             _hostEnvironment = hostEnvironment;
         }
 
-        public RequestDelegate _next { get; }
-        public ILogger<ExceptionMiddleWare> _logger { get; }
+        private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionMiddleWare> _logger;
 
         public async Task InvokeAsync(HttpContext context)
         {

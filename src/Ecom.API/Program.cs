@@ -1,9 +1,7 @@
-using Ecom.API.Errors;
 using Ecom.API.Extensions;
 using Ecom.API.MiddleWare;
 using Ecom.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.FileProviders;
+using StackExchange.Redis;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +12,14 @@ builder.Services.AddApiRegestraion();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.InfrastructureConfigureation(builder.Configuration);
+
+//Configuer Redis
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(i =>
+{
+    var configuer = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"),true);
+    return ConnectionMultiplexer.Connect(configuer);
+}); 
 
 var app = builder.Build();
 
@@ -32,7 +38,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseStaticFiles();
+app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
+
 
 app.MapControllers();
 

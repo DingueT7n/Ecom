@@ -7,11 +7,11 @@ namespace Ecom.Core.Sharing
         
         public int MaxPageSize { get; set; } = 15;
         
-        private int _pagesize =3;
+        private int _pagesize =6;
         public int PageSiz
         {
             get { return _pagesize; }
-            set { _pagesize = value>MaxPageSize? MaxPageSize:value; }
+            set { this._pagesize = value>MaxPageSize? MaxPageSize:value; }
         }
 
         public int Pagenumber { get; set; } = 1;
