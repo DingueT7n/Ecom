@@ -1,4 +1,5 @@
-﻿using Ecom.Core.Entities;
+﻿using Ecom.Core.Dtos;
+using Ecom.Core.Entities;
 
 namespace Ecom.Core.Interfaces
 {

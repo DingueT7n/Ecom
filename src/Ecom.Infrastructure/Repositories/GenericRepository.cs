@@ -75,7 +75,7 @@ namespace Ecom.Infrastructure.Repositories
         public async Task UpdateAsync(int  id, T entity)
         {
             // Validate input parameters
-            if (id == null)
+            if (id ==null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
