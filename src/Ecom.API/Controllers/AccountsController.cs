@@ -114,7 +114,7 @@ namespace Ecom.API.Controllers
             });
         }
 
-        [HttpGet("check-email-exist")]
+        [HttpGet("Check-Email-Exist")]
         public async Task<ActionResult<bool>> CheckEmailExist([FromQuery] string email)
         {
             var result = await _userManager.FindByEmailAsync(email);

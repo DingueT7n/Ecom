@@ -1,6 +1,8 @@
 using Ecom.API.Extensions;
 using Ecom.API.MiddleWare;
+using Ecom.Core.Services;
 using Ecom.Infrastructure;
+using Ecom.Infrastructure.Repositories;
 using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +43,9 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(i =>
 }); 
 
 var app = builder.Build();
+
+
+//Configuer the Order Di
 
 
 // Configure the HTTP request pipeline.

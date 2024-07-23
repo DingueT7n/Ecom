@@ -22,6 +22,8 @@ namespace Ecom.Infrastructure
         {
             //configure Token Services
             services.AddScoped<ITokenServices, TokenServices>();
+            services.AddScoped<IOrderServices, OrderServices>();
+
 
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
